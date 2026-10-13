@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThePageProject</title>
+  
+  <!-- PWA & Mobile Web App Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ThePageProject">
+  <meta name="theme-color" content="#09090b">
+  
+  <!-- Tailwind CSS & Lucide Icons & Chart.js -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+            },
+            dark: {
+              bg: '#09090b',
+              card: '#18181b',
+              border: '#27272a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #09090b;
+      color: #f4f4f5;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-dark-bg text-zinc-100 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white antialiased">
+
+  <!-- ================= SPLASH SCREEN ================= -->
+  <div id="splashScreen" class="fixed inset-0 z-50 bg-[#09090b] flex flex-col items-center justify-center p-6 transition-opacity duration-500">
+    <div class="max-w-md w-full text-center flex flex-col items-center">
+      
+      <!-- Monogram T+P+P Logo -->
+      <div class="w-28 h-28 mb-8 relative flex items-center justify-center">
+        <div class="absolute inset-0 bg-brand-500/20 rounded-3xl blur-2xl"></div>
+        <svg class="w-full h-full relative z-10 drop-shadow-[0_0_15px_rgba(249,115,22,0.5)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="5" width="90" height="90" rx="22" fill="#09090b" stroke="#27272a" stroke-width="2"/>
+          <path d="M 22 28 L 52 28 M 32 28 L 32 72" stroke="#ea580c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 46 28 L 46 72 M 46 28 L 64 28 C 72 28 72 46 64 46 L 46 46" stroke="#f97316" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 62 46 L 62 72 M 62 46 L 76 46 C 83 46 83 60 76 60 L 62 60" stroke="#fb923c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- App Title -->
+      <h1 class="text-4xl font-extrabold tracking-tight text-white mb-2">
+        ThePage<span class="text-brand-500">Project</span>
+      </h1>
+      <p class="text-xs font-medium text-zinc-500 tracking-widest uppercase mb-10">
+        by quirosjf
+      </p>
+
+      <!-- Language Selector -->
+      <div class="flex items-center gap-2 mb-8 bg-zinc-900/80 p-1.5 rounded-full border border-zinc-800">
+        <button onclick="setLanguage('en')" id="splash-lang-en" class="px-5 py-2 rounded-full text-xs font-semibold transition-all bg-brand-500 text-white shadow-md">
+          English
+        </button>
+        <button onclick="setLanguage('es')" id="splash-lang-es" class="px-5 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white transition-all">
+          Español
+        </button>
+      </div>
+
+      <!-- Enter Action Button -->
+      <button onclick="enterApp()" class="w-full py-4 px-8 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-brand-500/25 transition-all flex items-center justify-center gap-3">
+        <span id="splash-enter-btn">Enter Application</span>
+        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ================= MAIN APP HEADER ================= -->
+  <div id="appHeader" class="hidden border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Logo + Brand -->
+      <div class="flex items-center gap-3 cursor-pointer shrink-0" onclick="switchTab('dashboard')">
+        <div class="w-8 h-8 relative flex items-center justify-center">
+          <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="5" width="90" height="90" rx="22" fill="#18181b" stroke="#27272a" stroke-width="3"/>
+            <path d="M 22 28 L 52 28 M 32 28 L 32 72" stroke="#ea580c" stroke-width="7" stroke-linecap="round"/>
+            <path d="M 46 28 L 46 72 M 46 28 L 64 28 C 72 28 72 46 64 46 L 46 46" stroke="#f97316" stroke-width="7" stroke-linecap="round"/>
+            <path d="M 62 46 L 62 72 M 62 46 L 76 46 C 83 46 83 60 76 60 L 62 60" stroke="#fb923c" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="font-bold text-base sm:text-lg text-white tracking-tight">ThePage<span class="text-brand-500">Project</span></span>
+      </div>
+
+      <!-- Navigation Tabs (Fit-In Layout) -->
+      <nav class="flex items-center gap-1 overflow-x-auto hide-scrollbar py-1">
+        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all bg-zinc-800 text-white flex items-center gap-1.5 shrink-0">
+          <i data-lucide="layout-dashboard" class="w-4 h-4 text-brand-500"></i>
+          <span data-i18n="navDashboard">Dashboard</span>
+        </button>
+        <button onclick="switchTab('templates')" id="nav-templates" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-900 transition-all flex items-center gap-1.5 shrink-0">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+          <span data-i18n="navTemplates">Templates</span>
+        </button>
+        <button onclick="switchTab('input')" id
