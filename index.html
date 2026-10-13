@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ThePageProject</title>
+  <title>ThePageProject | AI Idea Repository</title>
   
   <!-- PWA & Mobile Web App Tags -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="ThePageProject">
-  <meta name="theme-color" content="#09090b">
+  <meta name="theme-color" content="#020617"> <!-- Nuevo azul ultra oscuro -->
   
-  <!-- Tailwind CSS & Lucide Icons & Chart.js -->
+  <!-- Tailwind CSS, Lucide Icons & Chart.js -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -22,16 +22,19 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              400: '#fb923c',
-              500: '#f97316',
-              600: '#ea580c',
+            brand: { 
+              400: '#38bdf8', // Azul neón claro
+              500: '#0ea5e9', // Azul principal brillante
+              600: '#0284c7'  // Azul profundo para hover
             },
-            dark: {
-              bg: '#09090b',
-              card: '#18181b',
-              border: '#27272a'
+            dark: { 
+              bg: '#020617', // Slate 950 ultra oscuro (Azul noche profundo)
+              card: '#0f172a', // Slate 900
+              border: '#1e293b' // Slate 800
             }
+          },
+          boxShadow: {
+            'glow': '0 0 20px -5px rgba(14, 165, 233, 0.4)',
           }
         }
       }
@@ -39,190 +42,176 @@
   </script>
   
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #09090b;
-      color: #f4f4f5;
+      font-family: 'Outfit', sans-serif; /* Fuente más geométrica y tech */
+      background-color: #020617;
+      color: #f8fafc;
     }
-    .hide-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .hide-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* Animaciones sutiles */
+    .fade-in { animation: fadeIn 0.5s ease-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body class="bg-dark-bg text-zinc-100 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white antialiased">
+<body class="bg-dark-bg text-slate-100 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white antialiased">
 
   <!-- ================= SPLASH SCREEN ================= -->
-  <div id="splashScreen" class="fixed inset-0 z-50 bg-[#09090b] flex flex-col items-center justify-center p-6 transition-opacity duration-500">
+  <div id="splashScreen" class="fixed inset-0 z-50 bg-[#020617] flex flex-col items-center justify-center p-6 transition-opacity duration-700">
     <div class="max-w-md w-full text-center flex flex-col items-center">
       
       <!-- Monogram T+P+P Logo -->
-      <div class="w-28 h-28 mb-8 relative flex items-center justify-center">
-        <div class="absolute inset-0 bg-brand-500/20 rounded-3xl blur-2xl"></div>
-        <svg class="w-full h-full relative z-10 drop-shadow-[0_0_15px_rgba(249,115,22,0.5)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="5" y="5" width="90" height="90" rx="22" fill="#09090b" stroke="#27272a" stroke-width="2"/>
-          <path d="M 22 28 L 52 28 M 32 28 L 32 72" stroke="#ea580c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M 46 28 L 46 72 M 46 28 L 64 28 C 72 28 72 46 64 46 L 46 46" stroke="#f97316" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M 62 46 L 62 72 M 62 46 L 76 46 C 83 46 83 60 76 60 L 62 60" stroke="#fb923c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="w-32 h-32 mb-10 relative flex items-center justify-center">
+        <div class="absolute inset-0 bg-brand-500/20 rounded-[2rem] blur-2xl animate-pulse"></div>
+        <svg class="w-full h-full relative z-10 drop-shadow-[0_0_20px_rgba(14,165,233,0.6)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="5" width="90" height="90" rx="28" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+          <path d="M 22 28 L 52 28 M 32 28 L 32 72" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 46 28 L 46 72 M 46 28 L 64 28 C 72 28 72 46 64 46 L 46 46" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 62 46 L 62 72 M 62 46 L 76 46 C 83 46 83 60 76 60 L 62 60" stroke="#7dd3fc" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
 
       <!-- App Title -->
-      <h1 class="text-4xl font-extrabold tracking-tight text-white mb-2">
-        ThePage<span class="text-brand-500">Project</span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-2">
+        ThePage<span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-600">Project</span>
       </h1>
-      <p class="text-xs font-medium text-zinc-500 tracking-widest uppercase mb-10">
-        by quirosjf
+      <p class="text-xs sm:text-sm font-medium text-slate-500 tracking-[0.2em] uppercase mb-12">
+        Powered by AI • by quirosjf
       </p>
 
       <!-- Language Selector -->
-      <div class="flex items-center gap-2 mb-8 bg-zinc-900/80 p-1.5 rounded-full border border-zinc-800">
-        <button onclick="setLanguage('en')" id="splash-lang-en" class="px-5 py-2 rounded-full text-xs font-semibold transition-all bg-brand-500 text-white shadow-md">
-          English
-        </button>
-        <button onclick="setLanguage('es')" id="splash-lang-es" class="px-5 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white transition-all">
-          Español
-        </button>
+      <div class="flex items-center gap-2 mb-10 bg-slate-900/80 p-1.5 rounded-full border border-slate-800 backdrop-blur-sm">
+        <button onclick="setLanguage('en')" id="splash-lang-en" class="px-6 py-2.5 rounded-full text-xs font-bold text-slate-400 hover:text-white transition-all">English</button>
+        <button onclick="setLanguage('es')" id="splash-lang-es" class="px-6 py-2.5 rounded-full text-xs font-bold bg-brand-500 text-white shadow-glow transition-all">Español</button>
       </div>
 
       <!-- Enter Action Button -->
-      <button onclick="enterApp()" class="w-full py-4 px-8 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-brand-500/25 transition-all flex items-center justify-center gap-3">
-        <span id="splash-enter-btn">Enter Application</span>
-        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      <button onclick="enterApp()" class="w-full sm:w-4/5 py-4 px-8 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl shadow-glow transition-all flex items-center justify-center gap-3 transform hover:scale-[1.02]">
+        <span id="splash-enter-btn" class="text-lg">Ingresar al Repositorio</span>
+        <i data-lucide="zap" class="w-5 h-5"></i>
       </button>
 
     </div>
   </div>
 
   <!-- ================= MAIN APP HEADER ================= -->
-  <div id="appHeader" class="hidden border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+  <div id="appHeader" class="hidden border-b border-slate-800/80 bg-dark-bg/80 backdrop-blur-xl sticky top-0 z-40 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
       
       <!-- Logo + Brand -->
       <div class="flex items-center gap-3 cursor-pointer shrink-0" onclick="switchTab('dashboard')">
-        <div class="w-8 h-8 relative flex items-center justify-center">
-          <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="5" width="90" height="90" rx="22" fill="#18181b" stroke="#27272a" stroke-width="3"/>
-            <path d="M 22 28 L 52 28 M 32 28 L 32 72" stroke="#ea580c" stroke-width="7" stroke-linecap="round"/>
-            <path d="M 46 28 L 46 72 M 46 28 L 64 28 C 72 28 72 46 64 46 L 46 46" stroke="#f97316" stroke-width="7" stroke-linecap="round"/>
-            <path d="M 62 46 L 62 72 M 62 46 L 76 46 C 83 46 83 60 76 60 L 62 60" stroke="#fb923c" stroke-width="6" stroke-linecap="round"/>
+        <div class="w-8 h-8 sm:w-10 sm:h-10 relative flex items-center justify-center">
+          <svg class="w-full h-full drop-shadow-[0_0_10px_rgba(14,165,233,0.4)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="5" width="90" height="90" rx="22" fill="#0f172a" stroke="#1e293b" stroke-width="3"/>
+            <path d="M 22 28 L 52 28 M 32 28 L 32 72" stroke="#0ea5e9" stroke-width="7" stroke-linecap="round"/>
+            <path d="M 46 28 L 46 72 M 46 28 L 64 28 C 72 28 72 46 64 46 L 46 46" stroke="#38bdf8" stroke-width="7" stroke-linecap="round"/>
+            <path d="M 62 46 L 62 72 M 62 46 L 76 46 C 83 46 83 60 76 60 L 62 60" stroke="#7dd3fc" stroke-width="6" stroke-linecap="round"/>
           </svg>
         </div>
-        <span class="font-bold text-base sm:text-lg text-white tracking-tight">ThePage<span class="text-brand-500">Project</span></span>
+        <span class="font-bold text-lg sm:text-xl text-white tracking-tight hidden sm:block">ThePage<span class="text-brand-500">Project</span></span>
       </div>
 
-      <!-- Navigation Tabs (Fit-In Layout) -->
-      <nav class="flex items-center gap-1 overflow-x-auto hide-scrollbar py-1">
-        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all bg-zinc-800 text-white flex items-center gap-1.5 shrink-0">
-          <i data-lucide="layout-dashboard" class="w-4 h-4 text-brand-500"></i>
-          <span data-i18n="navDashboard">Dashboard</span>
+      <!-- Navigation Tabs (Mobile Optimized) -->
+      <nav class="flex items-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar py-1">
+        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-800 text-white flex items-center gap-2 shrink-0 border border-slate-700">
+          <i data-lucide="layout-dashboard" class="w-4 h-4 text-brand-400"></i>
+          <span data-i18n="navDashboard">Panel</span>
         </button>
-        <button onclick="switchTab('templates')" id="nav-templates" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-900 transition-all flex items-center gap-1.5 shrink-0">
-          <i data-lucide="layers" class="w-4 h-4"></i>
-          <span data-i18n="navTemplates">Templates</span>
+        <button onclick="switchTab('templates')" id="nav-templates" class="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all flex items-center gap-2 shrink-0">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span data-i18n="navTemplates">Plantillas IA</span>
         </button>
-        <button onclick="switchTab('input')" id="nav-input" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-900 transition-all flex items-center gap-1.5 shrink-0">
+        <button onclick="switchTab('input')" id="nav-input" class="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all flex items-center gap-2 shrink-0">
           <i data-lucide="plus-circle" class="w-4 h-4"></i>
-          <span data-i18n="navInput">New Idea</span>
-        </button>
-        <button onclick="switchTab('export')" id="nav-export" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-900 transition-all flex items-center gap-1.5 shrink-0">
-          <i data-lucide="share-2" class="w-4 h-4"></i>
-          <span data-i18n="navExport">Share</span>
+          <span data-i18n="navInput">Nueva Idea</span>
         </button>
       </nav>
 
       <!-- Language Toggle -->
-      <button onclick="toggleLanguage()" class="px-2.5 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-xs font-bold text-zinc-300 hover:text-white transition-all flex items-center gap-1.5 shrink-0">
-        <i data-lucide="globe" class="w-3.5 h-3.5 text-brand-500"></i>
-        <span id="current-lang-code">EN</span>
+      <button onclick="toggleLanguage()" class="p-2 sm:px-3 sm:py-2 rounded-xl border border-slate-800 bg-slate-900 text-xs font-bold text-slate-300 hover:text-white transition-all flex items-center gap-2 shrink-0 hover:border-brand-500/50">
+        <i data-lucide="globe" class="w-4 h-4 text-brand-500"></i>
+        <span id="current-lang-code" class="hidden sm:block">ES</span>
       </button>
 
     </div>
   </div>
 
   <!-- ================= CONTENT VIEWS ================= -->
-  <main id="mainContent" class="hidden flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <main id="mainContent" class="hidden flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
     
     <!-- VIEW 1: DASHBOARD -->
-    <section id="view-dashboard" class="space-y-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-zinc-800">
+    <section id="view-dashboard" class="space-y-6 sm:space-y-8 fade-in">
+      
+      <!-- Top Action Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
         <div>
-          <h2 class="text-2xl font-bold text-white" data-i18n="dashTitle">Project & Idea Repository</h2>
-          <p class="text-sm text-zinc-400" data-i18n="dashSub">Structured execution plans generated by AI</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight" data-i18n="dashTitle">Repositorio IA</h2>
+          <p class="text-sm text-brand-400 font-medium mt-1" data-i18n="dashSub">Planes de ejecución estructurados</p>
         </div>
-        <div class="flex flex-wrap items-center gap-3">
-          <select id="projectSelect" onchange="loadSelectedProject()" class="bg-zinc-900 border border-zinc-800 text-white text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-500">
-          </select>
-          <button onclick="switchTab('input')" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 shadow-md">
-            <i data-lucide="sparkles" class="w-4 h-4"></i>
-            <span data-i18n="btnNewIdea">New Entry</span>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <select id="projectSelect" onchange="loadSelectedProject()" class="bg-dark-card border border-slate-700 text-white text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 w-full sm:w-auto shadow-sm transition-all appearance-none cursor-pointer"></select>
+          <button onclick="switchTab('input')" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-glow shrink-0">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span data-i18n="btnNewIdea">Crear Entrada</span>
           </button>
         </div>
       </div>
 
-      <!-- KPIs -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-zinc-900/60 border border-zinc-800/80 p-5 rounded-2xl">
-          <div class="text-xs font-medium text-zinc-400 mb-1" data-i18n="kpiCategory">Category / Type</div>
-          <div id="kpi-category" class="text-lg font-bold text-white flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-brand-500"></span>
-            <span>-</span>
-          </div>
-        </div>
-        <div class="bg-zinc-900/60 border border-zinc-800/80 p-5 rounded-2xl">
-          <div class="text-xs font-medium text-zinc-400 mb-1" data-i18n="kpiProgress">Execution Progress</div>
-          <div id="kpi-progress" class="text-lg font-bold text-brand-400">0%</div>
-        </div>
-        <div class="bg-zinc-900/60 border border-zinc-800/80 p-5 rounded-2xl">
-          <div class="text-xs font-medium text-zinc-400 mb-1" data-i18n="kpiStatus">Current Status</div>
-          <div id="kpi-status" class="text-lg font-bold text-white">-</div>
-        </div>
-        <div class="bg-zinc-900/60 border border-zinc-800/80 p-5 rounded-2xl">
-          <div class="text-xs font-medium text-zinc-400 mb-1" data-i18n="kpiOwner">Lead / Creator</div>
-          <div id="kpi-owner" class="text-lg font-bold text-white">-</div>
-        </div>
-      </div>
-
-      <!-- Main Columns -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Left Col: Details -->
+      <!-- Dashboard Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- Left Column: Details & Tasks -->
         <div class="lg:col-span-2 space-y-6">
-          <div class="bg-zinc-900/40 border border-zinc-800 p-6 rounded-2xl">
-            <h3 class="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-3" data-i18n="sectionSummary">Executive Summary & AI Analysis</h3>
-            <p id="dash-summary" class="text-zinc-200 leading-relaxed text-sm sm:text-base mb-6">Select or create a project to view details.</p>
-            <div class="border-t border-zinc-800/60 pt-4 flex flex-wrap gap-2" id="dash-tags"></div>
+          <!-- Summary Card -->
+          <div class="bg-dark-card/50 border border-slate-800 p-6 sm:p-8 rounded-3xl relative overflow-hidden group hover:border-slate-700 transition-all">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-brand-500/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
+            <h3 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2" data-i18n="sectionSummary">
+              <i data-lucide="file-text" class="w-4 h-4 text-brand-500"></i> Resumen del Proyecto
+            </h3>
+            <p id="dash-summary" class="text-slate-300 leading-relaxed text-sm sm:text-base font-medium mb-6 relative z-10"></p>
+            <div class="border-t border-slate-800/60 pt-5 flex flex-wrap gap-2 relative z-10" id="dash-tags"></div>
           </div>
 
-          <div class="bg-zinc-900/40 border border-zinc-800 p-6 rounded-2xl">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-sm font-semibold text-zinc-400 uppercase tracking-wider" data-i18n="sectionPlan">AI Action Plan & Tasks</h3>
-              <span class="text-xs text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-full font-medium" data-i18n="tagInteractive">Interactive Checklist</span>
-            </div>
+          <!-- Tasks Card -->
+          <div class="bg-dark-card/50 border border-slate-800 p-6 sm:p-8 rounded-3xl hover:border-slate-700 transition-all">
+            <h3 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-widest mb-5 flex items-center gap-2" data-i18n="sectionPlan">
+              <i data-lucide="check-square" class="w-4 h-4 text-brand-500"></i> Plan de Ejecución
+            </h3>
             <div id="task-checklist" class="space-y-3"></div>
           </div>
         </div>
 
-        <!-- Right Col: Health & Actions -->
+        <!-- Right Column: Chart & Actions -->
         <div class="space-y-6">
-          <div class="bg-zinc-900/40 border border-zinc-800 p-6 rounded-2xl flex flex-col items-center">
-            <h3 class="text-sm font-semibold text-zinc-400 uppercase tracking-wider w-full mb-4 text-left" data-i18n="sectionHealth">Project Health</h3>
-            <div class="w-48 h-48 relative">
+          <!-- Progress Chart Card -->
+          <div class="bg-dark-card/50 border border-slate-800 p-6 sm:p-8 rounded-3xl flex flex-col items-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-500/5 to-transparent opacity-50"></div>
+            <h3 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-widest w-full mb-6 text-left relative z-10" data-i18n="sectionHealth">Estado Actual</h3>
+            
+            <div class="w-52 h-52 relative flex items-center justify-center z-10">
               <canvas id="healthChart"></canvas>
+              <!-- Center Percentage -->
+              <div class="absolute flex flex-col items-center">
+                <span id="chart-percentage" class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">0%</span>
+                <span class="text-xs text-brand-400 font-medium mt-1">DONE</span>
+              </div>
             </div>
           </div>
 
-          <div class="bg-zinc-900/40 border border-zinc-800 p-6 rounded-2xl space-y-3">
-            <button onclick="exportCurrentProjectJSON()" class="w-full py-3 px-4 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2">
-              <i data-lucide="download" class="w-4 h-4"></i>
-              <span data-i18n="btnExportJSON">Export Project JSON</span>
+          <!-- Actions Card -->
+          <div class="bg-dark-card/50 border border-slate-800 p-6 rounded-3xl space-y-3">
+            <button onclick="exportCurrentProjectJSON()" class="w-full py-3.5 px-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 border border-slate-700 hover:border-slate-600">
+              <i data-lucide="download" class="w-4 h-4 text-brand-400"></i>
+              <span data-i18n="btnExportJSON">Exportar JSON</span>
             </button>
-            <button onclick="deleteCurrentProject()" class="w-full py-3 px-4 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2">
+            <button onclick="deleteCurrentProject()" class="w-full py-3.5 px-4 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 border border-red-500/20 hover:border-red-500/40">
               <i data-lucide="trash-2" class="w-4 h-4"></i>
-              <span data-i18n="btnDelete">Delete Entry</span>
+              <span data-i18n="btnDelete">Eliminar</span>
             </button>
           </div>
         </div>
@@ -230,258 +219,174 @@
     </section>
 
     <!-- VIEW 2: TEMPLATES -->
-    <section id="view-templates" class="hidden max-w-3xl mx-auto space-y-6">
-      <div class="bg-zinc-900/50 border border-zinc-800 p-6 sm:p-8 rounded-3xl space-y-6">
-        <div>
-          <h2 class="text-2xl font-bold text-white mb-1" data-i18n="tplTitle">Popular Project Presets</h2>
-          <p class="text-xs sm:text-sm text-zinc-400" data-i18n="tplSub">Select a common project category from the dropdown to automatically generate an execution framework.</p>
+    <section id="view-templates" class="hidden max-w-3xl mx-auto space-y-6 fade-in">
+      <div class="bg-dark-card border border-slate-800 p-6 sm:p-10 rounded-[2rem] space-y-8 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-600 via-brand-400 to-brand-600"></div>
+        
+        <div class="text-center sm:text-left">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2" data-i18n="tplTitle">Plantillas Optimizadas</h2>
+          <p class="text-sm sm:text-base text-slate-400" data-i18n="tplSub">Genera una estructura base con inteligencia artificial en 1 clic.</p>
         </div>
 
         <div class="space-y-4">
-          <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider" data-i18n="lblSelectPreset">Choose a Template</label>
-          <select id="presetSelect" onchange="applyTemplatePreset()" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-brand-500 text-sm">
-            <option value="" disabled selected>-- Select an Idea Category --</option>
-            <option value="saas">🚀 SaaS Platform (Subscription App)</option>
-            <option value="ecommerce">🛒 E-Commerce & Personal Brand Store</option>
-            <option value="mobile">📱 Mobile PWA Application</option>
-            <option value="ai-tool">🤖 AI Micro-SaaS / Assistant</option>
-            <option value="community">🎓 Digital Course & Paid Community</option>
-            <option value="agency">🏢 B2B Agency / Service Offer</option>
-          </select>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest" data-i18n="lblSelectPreset">Selecciona un modelo</label>
+          <div class="relative">
+            <select id="presetSelect" onchange="applyTemplatePreset()" class="w-full bg-slate-900/50 border border-slate-700 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 text-sm sm:text-base appearance-none cursor-pointer hover:border-slate-600 transition-colors">
+              <option value="" disabled selected>-- Elige una categoría --</option>
+              <option value="saas">🚀 Plataforma SaaS (Software de Suscripción)</option>
+              <option value="ecommerce">🛒 Tienda Digital / E-Commerce</option>
+              <option value="mobile">📱 Aplicación Móvil Híbrida (PWA)</option>
+              <option value="ai-tool">🤖 Herramienta con IA Generativa</option>
+              <option value="community">🎓 Curso Digital y Comunidad</option>
+              <option value="agency">🏢 Modelo de Agencia B2B</option>
+            </select>
+            <i data-lucide="chevron-down" class="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none"></i>
+          </div>
         </div>
 
-        <div id="presetPreview" class="hidden bg-zinc-950/60 border border-zinc-800 p-5 rounded-2xl space-y-4">
-          <h4 id="presetPreviewTitle" class="text-base font-bold text-brand-400"></h4>
-          <p id="presetPreviewDesc" class="text-xs text-zinc-300 leading-relaxed"></p>
-          <button onclick="confirmApplyPreset()" class="w-full py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
-            <i data-lucide="check-circle" class="w-4 h-4"></i>
-            <span data-i18n="btnLoadPreset">Load into Repository</span>
+        <div id="presetPreview" class="hidden bg-slate-900/80 border border-slate-700/50 p-6 sm:p-8 rounded-2xl space-y-5 animate-[fadeIn_0.3s_ease-out]">
+          <h4 id="presetPreviewTitle" class="text-lg sm:text-xl font-bold text-brand-400"></h4>
+          <p id="presetPreviewDesc" class="text-sm sm:text-base text-slate-300 leading-relaxed font-medium"></p>
+          <button onclick="confirmApplyPreset()" class="w-full py-4 bg-white text-slate-900 hover:bg-slate-200 font-bold rounded-xl text-sm sm:text-base transition-all flex items-center justify-center gap-2 shadow-lg mt-2">
+            <i data-lucide="zap" class="w-5 h-5 text-brand-500"></i>
+            <span data-i18n="btnLoadPreset">Generar Proyecto en Dashboard</span>
           </button>
         </div>
       </div>
     </section>
 
     <!-- VIEW 3: NEW IDEA FORM -->
-    <section id="view-input" class="hidden max-w-3xl mx-auto">
-      <div class="bg-zinc-900/50 border border-zinc-800 p-6 sm:p-8 rounded-3xl space-y-6">
-        <div>
-          <h2 class="text-2xl font-bold text-white mb-1" data-i18n="formTitle">Describe Your Idea or Project</h2>
-          <p class="text-xs sm:text-sm text-zinc-400" data-i18n="formSub">Our AI engine will structure the objective, execution plan, and requirements automatically.</p>
+    <section id="view-input" class="hidden max-w-3xl mx-auto fade-in">
+      <div class="bg-dark-card border border-slate-800 p-6 sm:p-10 rounded-[2rem] space-y-8 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-l from-brand-600 via-brand-400 to-brand-600"></div>
+
+        <div class="text-center sm:text-left">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2" data-i18n="formTitle">Nueva Idea en Blanco</h2>
+          <p class="text-sm sm:text-base text-slate-400" data-i18n="formSub">Registra un proyecto desde cero y el sistema creará la estructura.</p>
         </div>
 
-        <form id="ideaForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+        <form id="ideaForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
           <div>
-            <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-2" data-i18n="lblTitle">Title or Name</label>
-            <input type="text" id="input-title" required placeholder="e.g. AI Financial Assistant App" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-brand-500 text-sm">
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-2" data-i18n="lblType">Classification</label>
-              <select id="input-type" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-500 text-sm">
-                <option value="Project">Project / Initiative</option>
-                <option value="Business Idea">Business Idea</option>
-                <option value="Quick Note">Quick Note / Concept</option>
-                <option value="Feature">System Feature</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-2" data-i18n="lblOwner">Lead / Creator</label>
-              <input type="text" id="input-owner" placeholder="e.g. Tu Nombre" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-brand-500 text-sm">
-            </div>
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3" data-i18n="lblTitle">Título del Proyecto</label>
+            <input type="text" id="input-title" required placeholder="Ej: Plataforma Fintech V2" class="w-full bg-slate-900/50 border border-slate-700 rounded-2xl px-5 py-4 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 text-sm sm:text-base transition-colors hover:border-slate-600">
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-2" data-i18n="lblDesc">Core Idea & Objectives</label>
-            <textarea id="input-desc" rows="4" required placeholder="Describe what you want to achieve, key features, or problems to solve..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-4 text-white placeholder-zinc-600 focus:outline-none focus:border-brand-500 text-sm leading-relaxed"></textarea>
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3" data-i18n="lblDesc">Visión General</label>
+            <textarea id="input-desc" rows="5" required placeholder="¿Qué problema resuelve y cómo funciona?..." class="w-full bg-slate-900/50 border border-slate-700 rounded-2xl p-5 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 text-sm sm:text-base leading-relaxed transition-colors hover:border-slate-600"></textarea>
           </div>
 
-          <button type="submit" class="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl shadow-lg hover:shadow-brand-500/20 transition-all flex items-center justify-center gap-2">
-            <i data-lucide="sparkles" class="w-5 h-5"></i>
-            <span data-i18n="btnAnalyze">Analyze & Structure with AI</span>
+          <button type="submit" class="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl shadow-glow transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+            <i data-lucide="cpu" class="w-5 h-5"></i>
+            <span data-i18n="btnAnalyze">Procesar e Inicializar</span>
           </button>
         </form>
       </div>
     </section>
 
-    <!-- VIEW 4: SHARE & EXPORT APP -->
-    <section id="view-export" class="hidden max-w-3xl mx-auto space-y-6">
-      <div class="bg-zinc-900/50 border border-zinc-800 p-6 sm:p-8 rounded-3xl text-center space-y-6">
-        <div class="w-16 h-16 mx-auto bg-brand-500/10 rounded-2xl border border-brand-500/20 flex items-center justify-center text-brand-500">
-          <i data-lucide="share-2" class="w-8 h-8"></i>
-        </div>
-        <div>
-          <h2 class="text-2xl font-bold text-white mb-2" data-i18n="shareTitle">Share ThePageProject</h2>
-          <p class="text-sm text-zinc-400 max-w-md mx-auto" data-i18n="shareSub">Export this complete web application as a standalone HTML file to send to clients or colleagues.</p>
-        </div>
-        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button onclick="downloadStandaloneApp()" class="w-full sm:w-auto px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-brand-500/20 transition-all flex items-center justify-center gap-3">
-            <i data-lucide="download" class="w-5 h-5"></i>
-            <span data-i18n="btnDownloadHTML">Download Web App (.html)</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
   </main>
 
-  <!-- ================= LOGIC & JAVASCRIPT ================= -->
+  <!-- ================= JAVASCRIPT & LOGIC ================= -->
   <script>
-    let currentLang = 'en';
+    let currentLang = 'es';
     let projects = [];
     let activeProjectId = null;
     let healthChartInstance = null;
     let selectedPresetData = null;
 
+    const i18n = {
+      en: {
+        navDashboard: "Dashboard", navTemplates: "AI Templates", navInput: "New Idea",
+        dashTitle: "AI Repository", dashSub: "Structured execution plans",
+        btnNewIdea: "New Entry", sectionSummary: "Project Overview",
+        sectionPlan: "Execution Plan", sectionHealth: "Current Status",
+        btnExportJSON: "Export JSON", btnDelete: "Delete",
+        tplTitle: "Optimized Templates", tplSub: "Generate a baseline structure with AI in 1-click.",
+        lblSelectPreset: "Select a model", btnLoadPreset: "Generate in Dashboard",
+        formTitle: "Blank Canvas Idea", formSub: "Log a project from scratch and let the system structure it.",
+        lblTitle: "Project Title", lblDesc: "General Vision",
+        btnAnalyze: "Process & Initialize", enterBtn: "Enter Repository"
+      },
+      es: {
+        navDashboard: "Panel", navTemplates: "Plantillas IA", navInput: "Nueva Idea",
+        dashTitle: "Repositorio IA", dashSub: "Planes de ejecución estructurados",
+        btnNewIdea: "Crear Entrada", sectionSummary: "Resumen del Proyecto",
+        sectionPlan: "Plan de Ejecución", sectionHealth: "Estado Actual",
+        btnExportJSON: "Exportar JSON", btnDelete: "Eliminar",
+        tplTitle: "Plantillas Optimizadas", tplSub: "Genera una estructura base con inteligencia artificial en 1 clic.",
+        lblSelectPreset: "Selecciona un modelo", btnLoadPreset: "Generar Proyecto en Dashboard",
+        formTitle: "Nueva Idea en Blanco", formSub: "Registra un proyecto desde cero y el sistema creará la estructura.",
+        lblTitle: "Título del Proyecto", lblDesc: "Visión General",
+        btnAnalyze: "Procesar e Inicializar", enterBtn: "Ingresar al Repositorio"
+      }
+    };
+
     const presets = {
       saas: {
-        title: "SaaS Platform (Subscription App)",
-        type: "Business Idea",
-        summary: "A cloud-based recurring subscription software addressing targeted workflow automation for specialized teams.",
-        tags: ["SaaS", "Stripe API", "React", "Node.js", "PostgreSQL"],
+        title: { en: "SaaS Platform", es: "Plataforma SaaS" },
+        summary: { en: "Cloud subscription software focused on automation.", es: "Software en la nube con cobro recurrente enfocado en automatización." },
+        tags: ["SaaS", "Stripe", "Next.js"],
         tasks: [
-          { text: "Define MVP scope & core value proposition", done: true },
-          { text: "Design database schema & user auth flow", done: false },
-          { text: "Integrate Stripe billing & subscription plans", done: false },
-          { text: "Launch landing page & onboarding beta users", done: false }
+          { text: { en: "Define MVP scope", es: "Definir alcance del MVP" }, done: true },
+          { text: { en: "Design DB schema", es: "Diseñar Base de Datos" }, done: false },
+          { text: { en: "Integrate Stripe", es: "Integrar pasarela de pagos" }, done: false },
+          { text: { en: "Launch beta", es: "Lanzamiento Beta" }, done: false }
         ]
       },
       ecommerce: {
-        title: "E-Commerce & Personal Brand Store",
-        type: "Business Idea",
-        summary: "Direct-to-consumer store with optimized funnel, high-converting product pages, and automated logistics integration.",
-        tags: ["E-Commerce", "Shopify/Next.js", "Payment Gateway", "Meta Ads"],
+        title: { en: "E-Commerce", es: "Tienda Digital" },
+        summary: { en: "Direct-to-consumer store with optimized funnel.", es: "Tienda digital directa al consumidor con embudo optimizado." },
+        tags: ["E-Commerce", "Shopify", "Ads"],
         tasks: [
-          { text: "Source products & secure supplier contracts", done: true },
-          { text: "Setup online store & checkout funnel", done: false },
-          { text: "Configure email marketing & abandoned cart flows", done: false },
-          { text: "Launch ad campaigns & track CAC/ROAS", done: false }
+          { text: { en: "Source products", es: "Selección de inventario" }, done: true },
+          { text: { en: "Setup checkout", es: "Configurar checkout" }, done: false },
+          { text: { en: "Email flows", es: "Correos automáticos" }, done: false },
+          { text: { en: "Launch Ads", es: "Lanzar Ads Meta/TikTok" }, done: false }
         ]
       },
       mobile: {
-        title: "Mobile PWA Application",
-        type: "Project",
-        summary: "Cross-platform lightweight Progressive Web App accessible via mobile browser with offline capability and home-screen install.",
-        tags: ["PWA", "Service Workers", "Tailwind CSS", "JavaScript"],
+        title: { en: "Mobile PWA", es: "App Móvil PWA" },
+        summary: { en: "Cross-platform web app optimized for mobile.", es: "Aplicación ligera optimizada para instalarse en el celular." },
+        tags: ["PWA", "React", "Mobile"],
         tasks: [
-          { text: "Draft mobile UI/UX wireframes", done: true },
-          { text: "Configure Web Manifest & Service Worker", done: true },
-          { text: "Test touch interactions & offline cache", done: false },
-          { text: "Deploy to custom domain & publish PWA link", done: false }
+          { text: { en: "UI/UX wireframes", es: "Diseñar wireframes" }, done: true },
+          { text: { en: "Web Manifest", es: "Configurar Web Manifest" }, done: false },
+          { text: { en: "Offline cache", es: "Probar modo offline" }, done: false }
         ]
       },
       'ai-tool': {
-        title: "AI Micro-SaaS / Assistant Tool",
-        type: "Business Idea",
-        summary: "Specialized generative AI assistant utilizing Gemini API for automated content creation, data extraction, or workflow optimization.",
-        tags: ["AI Engine", "Gemini API", "Python/FastAPI", "Tailwind"],
+        title: { en: "AI Assistant", es: "Herramienta IA" },
+        summary: { en: "Generative AI workflow tool.", es: "Herramienta de IA generativa conectada por API." },
+        tags: ["AI", "API", "Python"],
         tasks: [
-          { text: "Draft system prompt & API endpoint specs", done: true },
-          { text: "Build frontend chat/input UI", done: false },
-          { text: "Implement token usage limits & user tiers", done: false },
-          { text: "Deploy API server & run user testing", done: false }
+          { text: { en: "System prompts", es: "Redactar Prompts base" }, done: true },
+          { text: { en: "Frontend UI", es: "Desarrollar UI de chat" }, done: false },
+          { text: { en: "API connection", es: "Conectar con OpenAI/Gemini" }, done: false }
         ]
       },
       community: {
-        title: "Digital Course & Paid Community",
-        type: "Business Idea",
-        summary: "Educational portal offering video modules, downloadable toolkits, and an exclusive member community space.",
-        tags: ["EdTech", "Community Platform", "Stripe", "Video Hosting"],
+        title: { en: "Digital Course", es: "Curso & Comunidad" },
+        summary: { en: "Educational portal and private community.", es: "Portal educativo con videos y comunidad privada." },
+        tags: ["EdTech", "Video", "Stripe"],
         tasks: [
-          { text: "Outline course curriculum & module objectives", done: true },
-          { text: "Record video lessons & design PDF workbooks", done: false },
-          { text: "Setup community portal & member access tiers", done: false },
-          { text: "Host launch webinar & open enrollments", done: false }
+          { text: { en: "Curriculum outline", es: "Estructurar temario" }, done: true },
+          { text: { en: "Record videos", es: "Grabar módulos" }, done: false },
+          { text: { en: "Setup portal", es: "Configurar portal web" }, done: false }
         ]
       },
       agency: {
-        title: "B2B Agency / Service Offer",
-        type: "Business Idea",
-        summary: "Productized agency offering high-ticket implementation services for business clients with standardized delivery.",
-        tags: ["B2B", "Consulting", "CRM", "Outreach"],
+        title: { en: "B2B Agency", es: "Agencia B2B" },
+        summary: { en: "Productized service for B2B clients.", es: "Servicios paquetizados para clientes empresariales." },
+        tags: ["B2B", "CRM", "Sales"],
         tasks: [
-          { text: "Define core offer & pricing packages", done: true },
-          { text: "Build agency pitch deck & case studies", done: false },
-          { text: "Setup cold outreach & LinkedIn inbound funnel", done: false },
-          { text: "Onboard first 3 retainer clients", done: false }
+          { text: { en: "Define offer", es: "Definir oferta irresistible" }, done: true },
+          { text: { en: "Pitch deck", es: "Crear presentación de ventas" }, done: false },
+          { text: { en: "Outreach funnel", es: "Empezar prospección" }, done: false }
         ]
       }
     };
 
-    const i18n = {
-      en: {
-        navDashboard: "Dashboard",
-        navTemplates: "Templates",
-        navInput: "New Idea",
-        navExport: "Share",
-        dashTitle: "Project & Idea Repository",
-        dashSub: "Structured execution plans generated by AI",
-        btnNewIdea: "New Entry",
-        kpiCategory: "Category / Type",
-        kpiProgress: "Execution Progress",
-        kpiStatus: "Current Status",
-        kpiOwner: "Lead / Creator",
-        sectionSummary: "Executive Summary & AI Analysis",
-        sectionPlan: "AI Action Plan & Tasks",
-        tagInteractive: "Interactive Checklist",
-        sectionHealth: "Project Health",
-        btnExportJSON: "Export Project JSON",
-        btnDelete: "Delete Entry",
-        tplTitle: "Popular Project Presets",
-        tplSub: "Select a common project category from the dropdown to automatically generate an execution framework.",
-        lblSelectPreset: "Choose a Template",
-        btnLoadPreset: "Load into Repository",
-        formTitle: "Describe Your Idea or Project",
-        formSub: "Our AI engine will structure the objective, execution plan, and requirements automatically.",
-        lblTitle: "Title or Name",
-        lblType: "Classification",
-        lblOwner: "Lead / Creator",
-        lblDesc: "Core Idea & Objectives",
-        btnAnalyze: "Analyze & Structure with AI",
-        shareTitle: "Share ThePageProject",
-        shareSub: "Export this complete web application as a standalone HTML file to send to clients or colleagues.",
-        btnDownloadHTML: "Download Web App (.html)"
-      },
-      es: {
-        navDashboard: "Panel",
-        navTemplates: "Plantillas",
-        navInput: "Nueva Idea",
-        navExport: "Compartir",
-        dashTitle: "Repositorio de Proyectos e Ideas",
-        dashSub: "Planes de ejecución estructurados generados por IA",
-        btnNewIdea: "Nueva Entrada",
-        kpiCategory: "Categoría / Tipo",
-        kpiProgress: "Progreso de Ejecución",
-        kpiStatus: "Estado Actual",
-        kpiOwner: "Líder / Creador",
-        sectionSummary: "Resumen Ejecutivo y Análisis de IA",
-        sectionPlan: "Plan de Acción de IA y Tareas",
-        tagInteractive: "Lista Interactiva",
-        sectionHealth: "Salud del Proyecto",
-        btnExportJSON: "Exportar JSON del Proyecto",
-        btnDelete: "Eliminar Entrada",
-        tplTitle: "Plantillas de Ideas Populares",
-        tplSub: "Selecciona una categoría del menú desplegable para generar automáticamente un marco de ejecución.",
-        lblSelectPreset: "Elige una Plantilla",
-        btnLoadPreset: "Cargar en el Repositorio",
-        formTitle: "Describe tu Idea o Proyecto",
-        formSub: "Nuestra IA estructurará los objetivos, tareas de ejecución y requisitos automáticamente.",
-        lblTitle: "Título o Nombre",
-        lblType: "Clasificación",
-        lblOwner: "Líder / Creador",
-        lblDesc: "Idea Central y Objetivos",
-        btnAnalyze: "Analizar y Estructurar con IA",
-        shareTitle: "Compartir ThePageProject",
-        shareSub: "Exporta esta aplicación web completa como un archivo HTML independiente para enviarla a clientes o colegas.",
-        btnDownloadHTML: "Descargar Web App (.html)"
-      }
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      loadDefaultProjects();
-      initChart();
-    });
+    document.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); loadDefaultProjects(); });
 
     function enterApp() {
       const splash = document.getElementById('splashScreen');
@@ -490,60 +395,51 @@
         splash.classList.add('hidden');
         document.getElementById('appHeader').classList.remove('hidden');
         document.getElementById('mainContent').classList.remove('hidden');
+        if (!healthChartInstance) initChart();
         loadSelectedProject();
-      }, 500);
+      }, 700);
     }
 
     function setLanguage(lang) {
       currentLang = lang;
       document.getElementById('current-lang-code').innerText = lang.toUpperCase();
       
-      if(lang === 'es') {
-        document.getElementById('splash-lang-es').className = "px-5 py-2 rounded-full text-xs font-semibold transition-all bg-brand-500 text-white shadow-md";
-        document.getElementById('splash-lang-en').className = "px-5 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white transition-all";
-        document.getElementById('splash-enter-btn').innerText = "Ingresar a la Aplicación";
-      } else {
-        document.getElementById('splash-lang-en').className = "px-5 py-2 rounded-full text-xs font-semibold transition-all bg-brand-500 text-white shadow-md";
-        document.getElementById('splash-lang-es').className = "px-5 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white transition-all";
-        document.getElementById('splash-enter-btn').innerText = "Enter Application";
-      }
+      const btnClasses = "px-6 py-2.5 rounded-full text-xs font-bold transition-all";
+      const activeClasses = `${btnClasses} bg-brand-500 text-white shadow-glow`;
+      const inactiveClasses = `${btnClasses} text-slate-400 hover:text-white`;
+
+      document.getElementById('splash-lang-es').className = lang === 'es' ? activeClasses : inactiveClasses;
+      document.getElementById('splash-lang-en').className = lang === 'en' ? activeClasses : inactiveClasses;
+      document.getElementById('splash-enter-btn').innerText = i18n[lang].enterBtn;
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (i18n[lang][key]) {
-          el.innerText = i18n[lang][key];
-        }
+        if (i18n[lang][key]) el.innerText = i18n[lang][key];
       });
 
-      if(activeProjectId) loadSelectedProject();
+      if(activeProjectId) { populateProjectSelect(); loadSelectedProject(); }
     }
 
-    function toggleLanguage() {
-      setLanguage(currentLang === 'en' ? 'es' : 'en');
-    }
+    function toggleLanguage() { setLanguage(currentLang === 'en' ? 'es' : 'en'); }
 
     function switchTab(tab) {
-      ['dashboard', 'templates', 'input', 'export'].forEach(t => {
+      ['dashboard', 'templates', 'input'].forEach(t => {
         document.getElementById(`view-${t}`).classList.add('hidden');
         const btn = document.getElementById(`nav-${t}`);
-        if(btn) {
-          btn.className = "px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-900 transition-all flex items-center gap-1.5 shrink-0";
-        }
+        if(btn) btn.className = "px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all flex items-center gap-2 shrink-0";
       });
 
       document.getElementById(`view-${tab}`).classList.remove('hidden');
       const activeBtn = document.getElementById(`nav-${tab}`);
-      if(activeBtn) {
-        activeBtn.className = "px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all bg-zinc-800 text-white flex items-center gap-1.5 shrink-0";
-      }
+      if(activeBtn) activeBtn.className = "px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-800 text-white flex items-center gap-2 shrink-0 border border-slate-700";
     }
 
     function applyTemplatePreset() {
       const key = document.getElementById('presetSelect').value;
       if(presets[key]) {
         selectedPresetData = presets[key];
-        document.getElementById('presetPreviewTitle').innerText = selectedPresetData.title;
-        document.getElementById('presetPreviewDesc').innerText = selectedPresetData.summary;
+        document.getElementById('presetPreviewTitle').innerText = selectedPresetData.title[currentLang];
+        document.getElementById('presetPreviewDesc').innerText = selectedPresetData.summary[currentLang];
         document.getElementById('presetPreview').classList.remove('hidden');
       }
     }
@@ -553,156 +449,98 @@
       const newProj = {
         id: 'proj-' + Date.now(),
         title: selectedPresetData.title,
-        type: selectedPresetData.type,
-        owner: 'Project Lead',
-        status: 'In Progress',
         summary: selectedPresetData.summary,
         tags: selectedPresetData.tags,
-        tasks: selectedPresetData.tasks
+        tasks: JSON.parse(JSON.stringify(selectedPresetData.tasks))
       };
       projects.unshift(newProj);
       activeProjectId = newProj.id;
-      saveProjects();
       populateProjectSelect();
       switchTab('dashboard');
       loadSelectedProject();
+      document.getElementById('presetPreview').classList.add('hidden');
+      document.getElementById('presetSelect').selectedIndex = 0;
     }
 
     function loadDefaultProjects() {
-      const saved = localStorage.getItem('tpp_projects');
-      if (saved) {
-        projects = JSON.parse(saved);
-      } else {
-        projects = [
-          {
-            id: 'demo-1',
-            title: 'ThePageProject Platform',
-            type: 'Business Idea',
-            owner: 'quirosjf',
-            status: 'In Progress',
-            summary: 'An AI-assisted project & idea incubator designed to structure raw ideas into executable, interactive web apps.',
-            tags: ['AI Engine', 'Tailwind', 'PWA', 'JavaScript'],
-            tasks: [
-              { text: 'Design dark & neon splash screen', done: true },
-              { text: 'Integrate T+P+P geometric monogram logo', done: true },
-              { text: 'Build EN/ES bilingual switcher', done: true },
-              { text: 'Implement local export to HTML', done: false }
-            ]
-          }
-        ];
-        saveProjects();
-      }
-      populateProjectSelect();
-      if(projects.length > 0) activeProjectId = projects[0].id;
-    }
-
-    function saveProjects() {
-      localStorage.setItem('tpp_projects', JSON.stringify(projects));
+      projects = [{
+        id: 'demo-1',
+        title: { en: 'TPP Initial Concept', es: 'Concepto Inicial TPP' },
+        summary: { en: 'Welcome to your new AI powered idea repository.', es: 'Bienvenido a tu nuevo repositorio de ideas impulsado por IA.' },
+        tags: ['System', 'Setup'],
+        tasks: [
+          { text: { en: 'Deploy to GitHub', es: 'Desplegar en GitHub Pages' }, done: true },
+          { text: { en: 'Update color palette to Deep Blue', es: 'Actualizar paleta a Azul Profundo' }, done: true },
+          { text: { en: 'Test mobile responsiveness', es: 'Probar adaptabilidad en móviles' }, done: false }
+        ]
+      }];
+      activeProjectId = projects[0].id;
     }
 
     function populateProjectSelect() {
       const select = document.getElementById('projectSelect');
-      select.innerHTML = projects.map(p => `<option value="${p.id}">${p.title}</option>`).join('');
+      select.innerHTML = projects.map(p => {
+        const titleText = typeof p.title === 'string' ? p.title : (p.title[currentLang] || p.title.en);
+        return `<option value="${p.id}">${titleText}</option>`;
+      }).join('');
       select.value = activeProjectId;
     }
 
     function loadSelectedProject() {
       const select = document.getElementById('projectSelect');
-      activeProjectId = select.value || (projects[0] ? projects[0].id : null);
+      activeProjectId = select.value || (projects.length > 0 ? projects[0].id : null);
       
       const p = projects.find(item => item.id === activeProjectId);
-      if(!p) return;
+      if(!p) {
+        document.getElementById('dash-summary').innerText = currentLang === 'es' ? 'No hay proyectos.' : 'No projects.';
+        document.getElementById('task-checklist').innerHTML = '';
+        document.getElementById('dash-tags').innerHTML = '';
+        updateProgressAndChart(null);
+        return;
+      }
 
-      document.getElementById('kpi-category').innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-brand-500"></span> ${p.type}`;
-      document.getElementById('kpi-status').innerText = p.status;
-      document.getElementById('kpi-owner').innerText = p.owner || 'N/A';
-      document.getElementById('dash-summary').innerText = p.summary;
+      document.getElementById('dash-summary').innerText = typeof p.summary === 'string' ? p.summary : (p.summary[currentLang] || p.summary.en);
+      
+      document.getElementById('dash-tags').innerHTML = (p.tags || []).map(t => 
+        `<span class="text-xs font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20 px-3 py-1.5 rounded-lg shadow-sm">${t}</span>`
+      ).join('');
 
-      const tagsContainer = document.getElementById('dash-tags');
-      tagsContainer.innerHTML = p.tags.map(t => `<span class="text-xs bg-zinc-800 text-zinc-300 border border-zinc-700/50 px-2.5 py-1 rounded-lg">${t}</span>`).join('');
-
-      renderChecklist(p);
+      document.getElementById('task-checklist').innerHTML = p.tasks.map((t, i) => {
+        const taskText = typeof t.text === 'string' ? t.text : (t.text[currentLang] || t.text.en);
+        return `
+          <label class="flex items-center gap-4 p-4 bg-slate-900/50 border border-slate-700/50 hover:border-brand-500/50 transition-all rounded-2xl cursor-pointer group">
+            <div class="relative flex items-center justify-center w-5 h-5 shrink-0">
+              <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask('${p.id}', ${i})" class="peer appearance-none w-5 h-5 rounded-[4px] border-2 border-slate-600 checked:bg-brand-500 checked:border-brand-500 transition-all cursor-pointer">
+              <i data-lucide="check" class="absolute w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"></i>
+            </div>
+            <span class="text-sm font-medium ${t.done ? 'line-through text-slate-500' : 'text-slate-200 group-hover:text-white'} transition-colors">${taskText}</span>
+          </label>
+        `;
+      }).join('');
+      
+      lucide.createIcons(); // Recargar iconos para los checkboxes custom
       updateProgressAndChart(p);
-    }
-
-    function renderChecklist(p) {
-      const container = document.getElementById('task-checklist');
-      container.innerHTML = p.tasks.map((task, idx) => `
-        <label class="flex items-start gap-3 p-3 rounded-xl bg-zinc-950/60 border border-zinc-800/80 hover:border-zinc-700 transition-all cursor-pointer">
-          <input type="checkbox" ${task.done ? 'checked' : ''} onchange="toggleTask('${p.id}', ${idx})" class="mt-1 rounded bg-zinc-900 border-zinc-700 text-brand-500 focus:ring-brand-500">
-          <span class="text-sm ${task.done ? 'line-through text-zinc-500' : 'text-zinc-200'}">${task.text}</span>
-        </label>
-      `).join('');
     }
 
     function toggleTask(projId, idx) {
       const p = projects.find(item => item.id === projId);
-      if(p && p.tasks[idx]) {
-        p.tasks[idx].done = !p.tasks[idx].done;
-        saveProjects();
-        renderChecklist(p);
-        updateProgressAndChart(p);
-      }
-    }
-
-    function updateProgressAndChart(p) {
-      const total = p.tasks.length;
-      const completed = p.tasks.filter(t => t.done).length;
-      const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
-
-      document.getElementById('kpi-progress').innerText = `${pct}%`;
-
-      if(healthChartInstance) {
-        healthChartInstance.data.datasets[0].data = [completed, total - completed];
-        healthChartInstance.update();
-      }
-    }
-
-    function initChart() {
-      const ctx = document.getElementById('healthChart').getContext('2d');
-      healthChartInstance = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Completed', 'Pending'],
-          datasets: [{
-            data: [1, 1],
-            backgroundColor: ['#f97316', '#27272a'],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          cutout: '75%',
-          plugins: { legend: { display: false } }
-        }
-      });
+      if(p && p.tasks[idx]) { p.tasks[idx].done = !p.tasks[idx].done; loadSelectedProject(); }
     }
 
     function handleFormSubmit(e) {
       e.preventDefault();
-      const title = document.getElementById('input-title').value;
-      const type = document.getElementById('input-type').value;
-      const owner = document.getElementById('input-owner').value;
-      const desc = document.getElementById('input-desc').value;
-
-      const newProject = {
-        id: 'proj-' + Date.now(),
-        title: title,
-        type: type,
-        owner: owner,
-        status: 'Planning',
-        summary: `AI Structured Analysis: ${desc}`,
-        tags: ['AI Generated', type, 'Phase 1'],
+      const newProject = { 
+        id: 'proj-' + Date.now(), 
+        title: document.getElementById('input-title').value,
+        summary: document.getElementById('input-desc').value, 
+        tags: ['Custom', 'V1'],
         tasks: [
-          { text: 'Define project scope and architectural draft', done: true },
-          { text: 'Setup core modules and development environment', done: false },
-          { text: 'Implement primary user features & testing', done: false },
-          { text: 'Deploy V1.0 to production', done: false }
-        ]
+          { text: { en: "Structure DB", es: "Estructurar Base de Datos" }, done: false }, 
+          { text: { en: "Design MVP", es: "Diseñar MVP" }, done: false }
+        ] 
       };
-
       projects.unshift(newProject);
       activeProjectId = newProject.id;
-      saveProjects();
       populateProjectSelect();
       switchTab('dashboard');
       loadSelectedProject();
@@ -711,29 +549,63 @@
 
     function deleteCurrentProject() {
       if(!activeProjectId) return;
-      projects = projects.filter(p => p.id !== activeProjectId);
-      saveProjects();
-      populateProjectSelect();
-      loadSelectedProject();
+      if(confirm(currentLang === 'es' ? '¿Eliminar este proyecto?' : 'Delete project?')) {
+        projects = projects.filter(p => p.id !== activeProjectId);
+        activeProjectId = projects.length > 0 ? projects[0].id : null;
+        populateProjectSelect();
+        loadSelectedProject();
+      }
     }
 
     function exportCurrentProjectJSON() {
       const p = projects.find(item => item.id === activeProjectId);
       if(!p) return;
-      const blob = new Blob([JSON.stringify(p, null, 2)], { type: 'application/json' });
+      const exportData = {
+        title: typeof p.title === 'string' ? p.title : p.title[currentLang],
+        summary: typeof p.summary === 'string' ? p.summary : p.summary[currentLang],
+        tags: p.tags, tasks: p.tasks.map(t => ({ task: typeof t.text === 'string' ? t.text : t.text[currentLang], completed: t.done }))
+      };
       const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `${p.title.toLowerCase().replace(/\s+/g, '-')}.json`;
+      a.href = URL.createObjectURL(new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' }));
+      a.download = `TPP_${exportData.title.replace(/\s+/g, '_')}.json`;
       a.click();
     }
 
-    function downloadStandaloneApp() {
-      const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-      const blob = new Blob([htmlContent], { type: 'text/html' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'ThePageProject-App.html';
-      a.click();
+    function initChart() {
+      const ctx = document.getElementById('healthChart');
+      if(!ctx) return;
+      healthChartInstance = new Chart(ctx.getContext('2d'), {
+        type: 'doughnut',
+        data: { 
+          labels: ['DONE', 'PENDING'], 
+          datasets: [{ data: [0, 1], backgroundColor: ['#0ea5e9', '#1e293b'], borderWidth: 0, borderRadius: 5 }] 
+        },
+        options: { 
+          cutout: '82%', responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { enabled: false } },
+          animation: { animateScale: true, animateRotate: true, duration: 800 }
+        }
+      });
+    }
+
+    function updateProgressAndChart(p) {
+      if (!p) {
+        document.getElementById('chart-percentage').innerText = '0%';
+        if(healthChartInstance) { healthChartInstance.data.datasets[0].data = [0, 1]; healthChartInstance.update(); }
+        return;
+      }
+      const total = p.tasks.length;
+      const completed = p.tasks.filter(t => t.done).length;
+      const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+      
+      document.getElementById('chart-percentage').innerText = `${pct}%`;
+      if(healthChartInstance) {
+        healthChartInstance.data.datasets[0].data = total > 0 ? [completed, total - completed] : [0, 1];
+        // Cambio de color al 100% (Verde esmeralda para completado)
+        healthChartInstance.data.datasets[0].backgroundColor = pct === 100 ? ['#10b981', '#1e293b'] : ['#0ea5e9', '#1e293b'];
+        document.getElementById('chart-percentage').style.color = pct === 100 ? '#10b981' : '#ffffff';
+        healthChartInstance.update();
+      }
     }
   </script>
 </body>
